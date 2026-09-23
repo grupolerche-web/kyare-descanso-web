@@ -1,0 +1,627 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>KYARE Descanso</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@500;700;800&family=Karla:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1F2A3C;
+    --ink-deep:#141C29;
+    --sage:#8CA88C;
+    --sage-deep:#5F7A63;
+    --sage-tint:#DCE6DC;
+    --sand:#F4EDE4;
+    --sand-2:#EAE0D0;
+    --muted:#6B6459;
+    --white:#FFFFFF;
+    --surface:var(--sand);
+    --surface-2:var(--sand-2);
+    --text:var(--ink);
+    --text-muted:var(--muted);
+    --on-dark:#F6F3EC;
+    --on-dark-muted:#B9C3C9;
+    background:var(--surface);
+  }
+  *{box-sizing:border-box;}
+  body{
+    background:var(--surface);
+    color:var(--text);
+    font-family:'Karla',-apple-system,'Segoe UI',sans-serif;
+    padding-left:max(20px, env(safe-area-inset-left,0px));
+    padding-right:max(20px, env(safe-area-inset-right,0px));
+  }
+  h1,h2,h3,.display{
+    font-family:'Libre Franklin',-apple-system,'Segoe UI',sans-serif;
+    font-weight:800;
+    color:var(--text);
+    text-wrap:balance;
+    margin:0;
+  }
+  p{margin:0; line-height:1.6;}
+  a{color:inherit;}
+  img{max-width:100%; display:block;}
+  .wrap{max-width:1100px; margin:0 auto;}
+  .eyebrow{
+    font-family:'Libre Franklin',sans-serif;
+    font-weight:700;
+    font-size:0.78rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--sage-deep);
+  }
+
+  /* ---------- header ---------- */
+  header{
+    position:sticky;
+    top:env(safe-area-inset-top,0px);
+    z-index:20;
+    background:rgba(244,237,228,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--sand-2);
+  }
+  .header-inner{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    padding-block:14px;
+  }
+  .brand{display:flex; align-items:center; gap:10px;}
+  .brand img{width:34px; height:34px;}
+  .brand-text{display:flex; flex-direction:column; line-height:1.05;}
+  .brand-text b{font-family:'Libre Franklin',sans-serif; font-weight:800; font-size:1.05rem; letter-spacing:0.01em; color:var(--ink);}
+  .brand-text span{font-family:'Libre Franklin',sans-serif; font-weight:500; font-size:0.62rem; letter-spacing:0.16em; color:var(--sage-deep); text-transform:uppercase;}
+  .header-cta{display:flex; align-items:center; gap:10px;}
+  .tel-link{
+    font-weight:600; font-size:0.92rem; color:var(--ink); text-decoration:none;
+    display:none;
+  }
+  @media(min-width:560px){ .tel-link{display:inline;} }
+
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'Libre Franklin',sans-serif; font-weight:700; font-size:0.88rem;
+    padding:11px 18px; border-radius:999px; text-decoration:none;
+    white-space:nowrap;
+  }
+  .btn-primary{background:var(--sage-deep); color:var(--white);}
+  .btn-primary:hover{background:#4f6853;}
+  .btn-ghost{background:transparent; color:var(--ink); border:1.5px solid var(--ink);}
+  .btn-light{background:var(--white); color:var(--ink);}
+  .btn-outline-light{background:transparent; color:var(--on-dark); border:1.5px solid rgba(246,243,236,0.55);}
+
+  /* ---------- hero ---------- */
+  .hero{
+    background:linear-gradient(180deg,var(--ink-deep),var(--ink) 70%);
+    color:var(--on-dark);
+    margin-inline:calc(-1 * max(20px, env(safe-area-inset-left,0px))) calc(-1 * max(20px, env(safe-area-inset-right,0px)));
+    padding-inline:max(20px, env(safe-area-inset-left,0px)) max(20px, env(safe-area-inset-right,0px));
+  }
+  .hero-inner{
+    display:grid;
+    grid-template-columns:1.1fr 1fr;
+    gap:40px;
+    align-items:center;
+    padding-block:56px 48px;
+  }
+  @media(max-width:760px){ .hero-inner{grid-template-columns:1fr; padding-block:36px 32px;} }
+  .hero h1{font-size:clamp(2.1rem,4.4vw,3.1rem); line-height:1.08; letter-spacing:-0.01em;}
+  .hero-sub{margin-top:18px; font-size:1.05rem; color:var(--on-dark-muted); max-width:46ch;}
+  .hero-ctas{display:flex; flex-wrap:wrap; gap:12px; margin-top:28px;}
+  .hero-note{margin-top:18px; font-size:0.85rem; color:var(--on-dark-muted); display:flex; align-items:center; gap:8px;}
+  .dot{width:6px; height:6px; border-radius:50%; background:var(--sage); flex:none;}
+  .hero-photo{
+    position:relative; border-radius:18px; overflow:hidden;
+    aspect-ratio:4/5; box-shadow:0 24px 60px rgba(0,0,0,0.35);
+  }
+  .hero-photo img{width:100%; height:100%; object-fit:cover;}
+  .hero-photo-tag{
+    position:absolute; left:14px; bottom:14px;
+    background:rgba(20,28,41,0.72); backdrop-filter:blur(4px);
+    color:var(--on-dark); font-size:0.76rem; padding:7px 12px; border-radius:999px;
+    font-family:'Libre Franklin',sans-serif; letter-spacing:0.02em;
+  }
+
+  /* ---------- value strip ---------- */
+  .value-strip{
+    background:var(--ink);
+    color:var(--on-dark);
+    margin-inline:calc(-1 * max(20px, env(safe-area-inset-left,0px))) calc(-1 * max(20px, env(safe-area-inset-right,0px)));
+    padding-inline:max(20px, env(safe-area-inset-left,0px)) max(20px, env(safe-area-inset-right,0px));
+    border-top:1px solid rgba(246,243,236,0.08);
+  }
+  .value-grid{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:1px;
+    background:rgba(246,243,236,0.1);
+    padding-block:0;
+  }
+  .value-item{background:var(--ink); padding:26px 20px;}
+  @media(max-width:700px){ .value-grid{grid-template-columns:1fr;} }
+  .value-item .num{font-family:'Libre Franklin',sans-serif; font-weight:800; font-size:1.5rem; color:var(--sage);}
+  .value-item p{margin-top:6px; font-size:0.92rem; color:var(--on-dark-muted);}
+
+  /* ---------- sections ---------- */
+  section{padding-block:64px;}
+  .section-head{max-width:640px; margin-bottom:36px;}
+  .section-head h2{font-size:clamp(1.6rem,3vw,2.15rem); margin-top:8px;}
+  .section-head p{margin-top:12px; color:var(--text-muted); font-size:1rem;}
+
+  /* catalog tabs */
+  .cat-tabs{display:flex; flex-wrap:wrap; gap:10px; margin-bottom:28px;}
+  .cat-tab{
+    font-family:'Libre Franklin',sans-serif; font-weight:700; font-size:0.88rem;
+    padding:10px 20px; border-radius:999px; cursor:pointer;
+    background:transparent; color:var(--ink); border:1.5px solid var(--ink);
+  }
+  .cat-tab.active{background:var(--ink); color:var(--on-dark); border-color:var(--ink);}
+  .cat-panel[hidden]{display:none;}
+  .price-tag{display:flex; align-items:baseline; gap:6px; margin-top:2px;}
+  .price-tag .amt{font-family:'Libre Franklin',sans-serif; font-weight:800; font-size:1rem; color:var(--ink);}
+  .price-tag .unit{font-size:0.72rem; color:var(--text-muted);}
+  .price-alt{font-size:0.78rem; color:var(--text-muted); margin-top:2px;}
+
+  /* catalog carousel */
+  .cat-card{
+    background:var(--white); border-radius:14px; overflow:hidden;
+    border:1px solid var(--sand-2);
+  }
+  .cat-card .ph{aspect-ratio:1/1; overflow:hidden; position:relative;}
+  .cat-card .ph img{width:100%; height:100%; object-fit:cover;}
+  .cat-card .best-seller{
+    position:absolute; top:10px; left:10px;
+    background:var(--sage-deep); color:var(--white);
+    font-family:'Libre Franklin',sans-serif; font-weight:700; font-size:0.68rem;
+    letter-spacing:0.06em; text-transform:uppercase;
+    padding:5px 10px; border-radius:999px;
+  }
+  .cat-card .info{padding:14px 16px 16px;}
+  .cat-card .info b{font-family:'Libre Franklin',sans-serif; font-weight:700; font-size:0.98rem;}
+  .cat-card .info span{display:block; margin-top:4px; font-size:0.82rem; color:var(--text-muted);}
+
+  .cat-carousel-wrap{position:relative;}
+  .cat-carousel{
+    display:flex; gap:16px;
+    overflow-x:auto; scroll-snap-type:x mandatory; scroll-behavior:smooth;
+    -webkit-overflow-scrolling:touch;
+    padding-block:2px 6px;
+    scrollbar-width:none;
+  }
+  .cat-carousel::-webkit-scrollbar{display:none;}
+  .carousel-card{flex:0 0 auto; width:240px; scroll-snap-align:start;}
+  @media(max-width:600px){ .carousel-card{width:64vw;} }
+  .car-btn{
+    position:absolute; top:calc(50% - 22px); transform:translateY(-50%);
+    width:40px; height:40px; border-radius:50%;
+    background:var(--white); border:1px solid var(--sand-2);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Libre Franklin',sans-serif; font-size:1.15rem; color:var(--ink);
+    cursor:pointer; box-shadow:0 8px 20px rgba(20,28,41,0.12); z-index:5;
+  }
+  .car-btn:hover{background:var(--sage-tint);}
+  .car-prev{left:-8px;}
+  .car-next{right:-8px;}
+  @media(max-width:760px){ .car-btn{display:none;} }
+  .carousel-dots{display:flex; justify-content:center; gap:8px; margin-top:20px;}
+  .car-dot{
+    width:8px; height:8px; border-radius:50%; padding:0;
+    background:var(--sand-2); border:none; cursor:pointer;
+  }
+  .car-dot.active{background:var(--sage-deep); width:22px; border-radius:5px; transition:width .2s ease, border-radius .2s ease;}
+
+  .other-cats{
+    margin-top:28px; display:flex; flex-wrap:wrap; gap:10px;
+  }
+  .chip{
+    font-family:'Libre Franklin',sans-serif; font-weight:600; font-size:0.85rem;
+    padding:9px 16px; border-radius:999px; background:var(--surface-2); color:var(--ink);
+    border:1px solid var(--sand-2);
+  }
+
+  .cat-cta{margin-top:32px; display:flex; flex-wrap:wrap; align-items:center; gap:16px;}
+  .cat-cta p{font-size:0.88rem; color:var(--text-muted); max-width:40ch;}
+
+  /* why us */
+  .why{
+    background:var(--ink); color:var(--on-dark);
+    margin-inline:calc(-1 * max(20px, env(safe-area-inset-left,0px))) calc(-1 * max(20px, env(safe-area-inset-right,0px)));
+    padding-inline:max(20px, env(safe-area-inset-left,0px)) max(20px, env(safe-area-inset-right,0px));
+  }
+  .why .section-head p{color:var(--on-dark-muted);}
+  .why .section-head .eyebrow{color:var(--sage);}
+  .why-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:28px 40px;}
+  @media(max-width:700px){ .why-grid{grid-template-columns:1fr;} }
+  .why-item{display:flex; gap:14px;}
+  .why-item .mark{
+    flex:none; width:34px; height:34px; border-radius:10px;
+    background:rgba(140,168,140,0.16); border:1px solid rgba(140,168,140,0.4);
+    display:flex; align-items:center; justify-content:center;
+    color:var(--sage); font-family:'Libre Franklin',sans-serif; font-weight:800; font-size:0.95rem;
+  }
+  .why-item h3{font-size:1rem; font-weight:700;}
+  .why-item p{margin-top:5px; font-size:0.9rem; color:var(--on-dark-muted);}
+
+  /* coverage */
+  .coverage-wrap{
+    display:grid; grid-template-columns:1.1fr 0.9fr; gap:40px; align-items:center;
+  }
+  @media(max-width:760px){ .coverage-wrap{grid-template-columns:1fr;} }
+  .town-grid{display:flex; flex-wrap:wrap; gap:10px; margin-top:20px;}
+  .town{
+    font-family:'Libre Franklin',sans-serif; font-size:0.85rem; font-weight:600;
+    padding:8px 14px; border-radius:999px; background:var(--white); border:1px solid var(--sand-2);
+  }
+  .map-card{
+    background:var(--white); border:1px solid var(--sand-2); border-radius:16px; padding:26px;
+  }
+  .map-card .zone{
+    width:100%; aspect-ratio:1/1; border-radius:12px;
+    background:radial-gradient(circle at 50% 45%, var(--sage-tint), var(--sand-2) 72%);
+    display:flex; align-items:center; justify-content:center; position:relative;
+  }
+  .map-card .zone .center{
+    width:14px; height:14px; border-radius:50%; background:var(--sage-deep);
+    box-shadow:0 0 0 8px rgba(95,122,99,0.18);
+  }
+  .map-card .zone-label{
+    position:absolute; bottom:12px; left:12px; right:12px;
+    font-family:'Libre Franklin',sans-serif; font-size:0.72rem; letter-spacing:0.08em;
+    text-transform:uppercase; color:var(--sage-deep); text-align:center;
+  }
+
+  /* final cta / footer */
+  footer{
+    background:var(--ink-deep); color:var(--on-dark);
+    margin-inline:calc(-1 * max(20px, env(safe-area-inset-left,0px))) calc(-1 * max(20px, env(safe-area-inset-right,0px)));
+    padding-inline:max(20px, env(safe-area-inset-left,0px)) max(20px, env(safe-area-inset-right,0px));
+    padding-block:56px calc(28px + env(safe-area-inset-bottom,0px));
+  }
+  .footer-top{
+    display:flex; flex-wrap:wrap; justify-content:space-between; gap:32px;
+    padding-bottom:36px; border-bottom:1px solid rgba(246,243,236,0.12);
+  }
+  .footer-brand img{width:150px; margin-bottom:14px;}
+  .footer-brand p{color:var(--on-dark-muted); font-size:0.88rem; max-width:32ch;}
+  .footer-cta h3{color:var(--on-dark); font-size:1.2rem; margin-bottom:14px;}
+  .footer-cta .btn-row{display:flex; flex-wrap:wrap; gap:12px;}
+  .footer-meta{
+    display:flex; flex-wrap:wrap; justify-content:space-between; gap:16px;
+    padding-top:22px; font-size:0.8rem; color:var(--on-dark-muted);
+  }
+  .footer-meta a{text-decoration:none;}
+  .footer-meta a:hover{color:var(--sage);}
+
+  .icon-wa{width:16px; height:16px; flex:none;}
+
+  @media (prefers-reduced-motion: reduce){
+    .cat-carousel{scroll-behavior:auto;}
+  }
+</style>
+
+<header>
+  <div class="wrap header-inner">
+    <div class="brand">
+      <img src="images/icono.png" alt="KYARE Descanso">
+      <div class="brand-text">
+        <b>KYARE Descanso</b>
+        <span>Colchones &amp; Hogar</span>
+      </div>
+    </div>
+    <div class="header-cta">
+      <a class="tel-link" href="tel:+34696013639">696 01 36 39</a>
+      <a class="btn btn-primary" href="https://wa.me/34696013639?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20colchones" target="_blank" rel="noopener">
+        <svg class="icon-wa" viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.8-1.9-.9-.3-.1-.4-.1-.6.1-.2.3-.7.9-.8 1-.1.2-.3.2-.6.1-.3-.1-1.2-.4-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.1.2-.3.3-.4.1-.2 0-.4 0-.5C11 9 10.5 7.7 10.3 7.2c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.7-.7 1.9-1.3.2-.7.2-1.2.2-1.3-.1-.1-.3-.2-.6-.3z"/><path d="M12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.6 1.4 5.1L2 22l5.1-1.3C8.5 21.5 10.2 22 12 22c5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3.1.8.8-3-.2-.3C4 14.9 3.6 13.5 3.6 12c0-4.6 3.8-8.4 8.4-8.4 4.6 0 8.4 3.8 8.4 8.4 0 4.6-3.8 8.4-8.4 8.4z"/></svg>
+        WhatsApp
+      </a>
+    </div>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="wrap hero-inner">
+    <div>
+      <p class="eyebrow" style="color:var(--sage);">Colchones y descanso · Provincia de Málaga</p>
+      <h1 style="color:var(--on-dark); margin-top:12px;">Descanso a medida, sin intermediarios</h1>
+      <p class="hero-sub">Asesoramiento directo para elegir el colchón que tu cuerpo necesita: firmeza, altura y materiales, explicados por teléfono o WhatsApp antes de decidir.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="https://wa.me/34696013639?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20colchones" target="_blank" rel="noopener">Escríbenos por WhatsApp</a>
+        <a class="btn btn-outline-light" href="tel:+34696013639">Llamar · 696 01 36 39</a>
+      </div>
+      <p class="hero-note"><span class="dot"></span> Lunes a sábado, 9:00–20:00 · Servicio en toda la provincia de Málaga</p>
+    </div>
+    <div class="hero-photo">
+      <img src="images/hero.jpg" alt="Dormitorio con colchón KYARE Descanso">
+      <span class="hero-photo-tag">Modelo Versalles · Ensacados</span>
+    </div>
+  </div>
+</div>
+
+<div class="value-strip">
+  <div class="wrap value-grid">
+    <div class="value-item">
+      <div class="num">Hasta 20 años</div>
+      <p>de garantía según el modelo de colchón elegido.</p>
+    </div>
+    <div class="value-item">
+      <div class="num">Toda Málaga</div>
+      <p>cubrimos la provincia entera, sin coste de desplazamiento oculto.</p>
+    </div>
+    <div class="value-item">
+      <div class="num">Trato directo</div>
+      <p>hablas con quien te asesora, sin comerciales ni centralitas.</p>
+    </div>
+  </div>
+</div>
+
+<section id="colchones">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Catálogo</p>
+      <h2>Un modelo para cada forma de dormir</h2>
+      <p>Desde firmeza extra-suave hasta extra-firme, con núcleos de muelles ensacados, viscoelástica, látex y bonell. Y si buscas algo más para la casa, también tenemos mobiliario auxiliar.</p>
+    </div>
+
+    <div class="cat-tabs" role="tablist">
+      <button class="cat-tab active" data-target="panel-colchones">Colchones</button>
+      <button class="cat-tab" data-target="panel-muebles">Muebles auxiliares</button>
+    </div>
+
+    <div class="cat-panel" id="panel-colchones">
+      <div class="cat-carousel-wrap">
+        <button class="car-btn car-prev" aria-label="Modelo anterior">‹</button>
+        <div class="cat-carousel">
+          <div class="cat-card carousel-card">
+            <div class="ph">
+              <span class="best-seller">Más vendido</span>
+              <img src="images/cat-energy-sport.jpg" alt="Colchón Energy Sport">
+            </div>
+            <div class="info"><b>Energy Sport</b><span>Firme · 5 años garantía</span></div>
+          </div>
+          <div class="cat-card carousel-card">
+            <div class="ph"><img src="images/cat-black-titan.jpg" alt="Colchón Black Titan"></div>
+            <div class="info"><b>Black Titan</b><span>Firme · 20 años garantía</span></div>
+          </div>
+          <div class="cat-card carousel-card">
+            <div class="ph"><img src="images/cat-sydney.jpg" alt="Colchón Sydney"></div>
+            <div class="info"><b>Sydney</b><span>Media · 10 años garantía</span></div>
+          </div>
+          <div class="cat-card carousel-card">
+            <div class="ph"><img src="images/cat-ionic.jpg" alt="Colchón Ionic Balance"></div>
+            <div class="info"><b>Ionic Balance</b><span>Firme · Tejido con turmalina</span></div>
+          </div>
+          <div class="cat-card carousel-card">
+            <div class="ph"><img src="images/cat-natural-green.jpg" alt="Colchón Natural Green"></div>
+            <div class="info"><b>Natural Green</b><span>Media · Cáñamo, bambú y látex</span></div>
+          </div>
+        </div>
+        <button class="car-btn car-next" aria-label="Modelo siguiente">›</button>
+      </div>
+      <div class="carousel-dots"></div>
+
+      <div class="cat-cta">
+        <a class="btn btn-ghost" href="catalogo-kyare-descanso.pdf" target="_blank" rel="noopener">Ver catálogo completo (PDF)</a>
+        <p>35 modelos organizados por tipo de núcleo, con garantía, altura y firmeza de cada uno.</p>
+      </div>
+
+      <div class="other-cats">
+        <span class="chip">Somieres</span>
+        <span class="chip">Canapés</span>
+        <span class="chip">Sofás</span>
+      </div>
+      <p style="margin-top:14px; font-size:0.85rem; color:var(--text-muted);">También trabajamos estas categorías bajo pedido — cuéntanos qué necesitas por WhatsApp y te lo confirmamos.</p>
+    </div>
+
+    <div class="cat-panel" id="panel-muebles" hidden>
+      <div class="cat-carousel-wrap">
+        <button class="car-btn car-prev" aria-label="Mueble anterior">‹</button>
+        <div class="cat-carousel">
+          <div class="cat-card carousel-card">
+            <div class="ph"><img src="images/aux-aparador-grande.jpg" alt="Aparador 4 puertas, acabado roble Ares"></div>
+            <div class="info">
+              <b>Aparador 4 puertas</b><span>75×160×40 cm · Roble Ares</span>
+              <div class="price-tag"><span class="amt">197 €</span><span class="unit">en kit</span></div>
+              <p class="price-alt">Montado y entregado: 257 €</p>
+            </div>
+          </div>
+          <div class="cat-card carousel-card">
+            <div class="ph"><img src="images/aux-mesa-tv.jpg" alt="Mueble de TV de 4 puertas, acabado roble Ares"></div>
+            <div class="info">
+              <b>Mesa TV 4 puertas</b><span>55×160×40 cm · Roble Ares</span>
+              <div class="price-tag"><span class="amt">146 €</span><span class="unit">en kit</span></div>
+              <p class="price-alt">Montado y entregado: 199 €</p>
+            </div>
+          </div>
+          <div class="cat-card carousel-card">
+            <div class="ph"><img src="images/aux-mesa-comedor.jpg" alt="Mesa de comedor fija, acabado roble Ares"></div>
+            <div class="info">
+              <b>Mesa de comedor fija</b><span>76×150×90 cm · Roble Ares</span>
+              <div class="price-tag"><span class="amt">143 €</span><span class="unit">en kit</span></div>
+            </div>
+          </div>
+          <div class="cat-card carousel-card">
+            <div class="ph"><img src="images/aux-aparador-praga.jpg" alt="Aparador 2 puertas, acabado roble Ares"></div>
+            <div class="info">
+              <b>Aparador 2 puertas</b><span>90×120×40 cm · Roble Ares</span>
+              <div class="price-tag"><span class="amt">179 €</span><span class="unit">en kit</span></div>
+              <p class="price-alt">Montado y entregado: 228 €</p>
+            </div>
+          </div>
+        </div>
+        <button class="car-btn car-next" aria-label="Mueble siguiente">›</button>
+      </div>
+      <div class="carousel-dots"></div>
+
+      <div class="cat-cta">
+        <a class="btn btn-ghost" href="catalogo-muebles-auxiliares-kyare.pdf" target="_blank" rel="noopener">Ver catálogo completo (PDF)</a>
+        <p>Aparadores, módulos de TV, mesas de centro y de comedor, vitrinas y estanterías, con medidas y precio en kit o montado.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="why">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Por qué KYARE Descanso</p>
+      <h2 style="color:var(--on-dark);">Asesoramiento real, no un catálogo genérico</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-item">
+        <div class="mark">1</div>
+        <div>
+          <h3>Te preguntamos antes de recomendar</h3>
+          <p>Peso, postura al dormir, dolores de espalda: la firmeza correcta depende de la persona, no de la oferta del mes.</p>
+        </div>
+      </div>
+      <div class="why-item">
+        <div class="mark">2</div>
+        <div>
+          <h3>Explicamos cada material</h3>
+          <p>Muelles ensacados, viscoelástica, látex o bonell — te decimos qué cambia entre uno y otro, sin tecnicismos vacíos.</p>
+        </div>
+      </div>
+      <div class="why-item">
+        <div class="mark">3</div>
+        <div>
+          <h3>Garantías reales por modelo</h3>
+          <p>Cada colchón tiene su propia garantía de fábrica, de 3 a 20 años según el modelo — te decimos la del tuyo antes de comprar.</p>
+        </div>
+      </div>
+      <div class="why-item">
+        <div class="mark">4</div>
+        <div>
+          <h3>Respuesta rápida por WhatsApp</h3>
+          <p>Mándanos una foto de tu habitación o tus medidas y te respondemos con opciones concretas, no un enlace a la web.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section id="cobertura">
+  <div class="wrap coverage-wrap">
+    <div>
+      <p class="eyebrow">Zona de servicio</p>
+      <h2 style="margin-top:8px;">Toda la provincia de Málaga</h2>
+      <p style="margin-top:12px; color:var(--text-muted); max-width:46ch;">Atendemos consultas y entregas en toda la provincia. Estos son algunos de los municipios donde ya hemos trabajado:</p>
+      <div class="town-grid">
+        <span class="town">Fuengirola</span>
+        <span class="town">Málaga capital</span>
+        <span class="town">Marbella</span>
+        <span class="town">Mijas</span>
+        <span class="town">Torremolinos</span>
+        <span class="town">Benalmádena</span>
+        <span class="town">Estepona</span>
+      </div>
+    </div>
+    <div class="map-card">
+      <div class="zone">
+        <div class="center"></div>
+        <div class="zone-label">Provincia de Málaga</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="images/logo_white.png" alt="KYARE Descanso">
+        <p>Colchones, somieres, canapés, sofás y mobiliario de hogar en toda la provincia de Málaga.</p>
+      </div>
+      <div class="footer-cta">
+        <h3>¿Hablamos de tu descanso?</h3>
+        <div class="btn-row">
+          <a class="btn btn-primary" href="https://wa.me/34696013639?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20colchones" target="_blank" rel="noopener">WhatsApp</a>
+          <a class="btn btn-outline-light" href="tel:+34696013639">696 01 36 39</a>
+          <a class="btn btn-outline-light" href="mailto:kyaredescanso@gmail.com">Email</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-meta">
+      <span>KYARE Descanso · Lunes a sábado, 9:00–20:00</span>
+      <span>© 2026 KYARE Descanso</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function initCarousel(wrap){
+    var car = wrap.querySelector('.cat-carousel');
+    var cards = Array.prototype.slice.call(car.querySelectorAll('.carousel-card'));
+    var dotsWrap = wrap.parentElement.querySelector('.carousel-dots');
+    var prevBtn = wrap.querySelector('.car-prev');
+    var nextBtn = wrap.querySelector('.car-next');
+    if (!cards.length) return;
+
+    cards.forEach(function(_, i){
+      var d = document.createElement('button');
+      d.className = 'car-dot';
+      d.setAttribute('aria-label', 'Ir al elemento ' + (i + 1));
+      d.addEventListener('click', function(){ stopAuto(); scrollToCard(i); });
+      dotsWrap.appendChild(d);
+    });
+    var dots = Array.prototype.slice.call(dotsWrap.querySelectorAll('.car-dot'));
+
+    function cardOffset(i){ return cards[i].offsetLeft - cards[0].offsetLeft; }
+    function scrollToCard(i){
+      try{ car.scrollTo({ left: cardOffset(i), behavior: reduceMotion ? 'auto' : 'smooth' }); }
+      catch(e){ car.scrollLeft = cardOffset(i); }
+    }
+    function currentIndex(){
+      var pos = car.scrollLeft, closest = 0, min = Infinity;
+      cards.forEach(function(_, i){
+        var d = Math.abs(cardOffset(i) - pos);
+        if (d < min){ min = d; closest = i; }
+      });
+      return closest;
+    }
+    function markActive(){
+      var cur = currentIndex();
+      dots.forEach(function(d, i){ d.classList.toggle('active', i === cur); });
+    }
+
+    car.addEventListener('scroll', function(){
+      window.requestAnimationFrame(markActive);
+    }, { passive: true });
+
+    prevBtn.addEventListener('click', function(){ stopAuto(); scrollToCard(Math.max(0, currentIndex() - 1)); });
+    nextBtn.addEventListener('click', function(){ stopAuto(); scrollToCard((currentIndex() + 1) % cards.length); });
+
+    var autoTimer = null;
+    function startAuto(){
+      if (reduceMotion) return;
+      stopAuto();
+      autoTimer = setInterval(function(){
+        if (wrap.offsetParent === null) return; // panel hidden, skip tick
+        scrollToCard((currentIndex() + 1) % cards.length);
+      }, 4200);
+    }
+    function stopAuto(){ if (autoTimer){ clearInterval(autoTimer); autoTimer = null; } }
+
+    car.addEventListener('pointerdown', stopAuto, { passive: true });
+    car.addEventListener('touchstart', stopAuto, { passive: true });
+
+    markActive();
+    startAuto();
+  }
+
+  document.querySelectorAll('.cat-carousel-wrap').forEach(initCarousel);
+
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('.cat-tab'));
+  tabs.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      tabs.forEach(function(b){ b.classList.remove('active'); });
+      btn.classList.add('active');
+      document.querySelectorAll('.cat-panel').forEach(function(p){ p.hidden = true; });
+      var target = document.getElementById(btn.dataset.target);
+      if (target) target.hidden = false;
+    });
+  });
+})();
+</script>
+
+</body></html>
